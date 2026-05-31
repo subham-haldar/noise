@@ -1,0 +1,12 @@
+# Large exe files - too big for GitHub
+ffmpeg.exe
+ffplay.exe
+ffprobe.exe
+yt-dlp.exe
+
+# Downloaded videos - no need to push these
+downloads/
+
+# Python cache
+__pycache__/
+*.pyc
