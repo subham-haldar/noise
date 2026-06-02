@@ -3,12 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="EchoAI - Enhance noisy YouTube audio using AI. Remove background noise, hums, hiss, and vocal noise with state-of-the-art deep learning models instantly." />
-  <title>EchoAI - AI YouTube Audio Noise Remover</title>
-  <!-- Google Fonts Outfit -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <title>EchoAI</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -20,133 +15,91 @@
   <div class="container">
 
     <!-- NAVBAR -->
-    <header>
-      <nav id="main-nav">
-        <div class="logo" id="app-logo">EchoAI</div>
-        <div class="nav-links">
-          <a href="#home" id="nav-home">Home</a>
-          <a href="#how-it-works" id="nav-info">How It Works</a>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" id="nav-github">GitHub</a>
-        </div>
-        <button class="signin-btn" id="btn-signin">Sign In</button>
-      </nav>
-    </header>
+    <nav>
+      <div class="logo">EchoAI</div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">How It Works</a>
+        <a href="#">GitHub</a>
+      </div>
+      <button class="signin-btn">Sign In</button>
+    </nav>
 
-    <!-- MAIN HERO -->
-    <main>
-      <section class="hero" id="hero-section">
+    <!-- HERO -->
+    <section class="hero">
 
-        <div class="hero-text">
+      <div class="hero-text">
 
-          <h1 id="hero-title">
-            Enhance Noisy <br>
-            YouTube Audio <br>
-            <span class="gradient-text">Using AI.</span>
-          </h1>
+        <h1>
+          Enhance Noisy <br>
+          YouTube Audio <br>
+          Using AI.
+        </h1>
 
-          <p id="hero-description">
-            Extract clear voice, remove distracting background noise, wind, hums, and hiss from YouTube videos instantly using deep learning noise reduction algorithms.
-          </p>
+        <p>
+          Remove background noise, improve voice clarity and get crystal clear audio using AI technology.
+        </p>
 
-          <!-- INTERACTIVE CONTAINER -->
-          <div class="app-card" id="enhancer-app">
-            
-            <!-- INPUT ROW -->
-            <div class="input-row">
-              <input type="text" id="yt-url" placeholder="Paste YouTube Video URL here" class="url-input" aria-label="YouTube URL Input">
-            </div>
-
-            <!-- YOUTUBE PREVIEW CARD -->
-            <div id="preview-container" class="preview-card" style="display: none;">
-              <div class="thumbnail-wrapper">
-                <img id="video-thumbnail" src="" alt="YouTube Video Thumbnail">
-                <div class="play-overlay">
-                  <div class="badge">YouTube Video Detected</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- LOADER STATE -->
-            <div id="loader-container" class="loader-card" style="display: none;">
-              <div class="equalizer" id="audio-equalizer">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-              </div>
-              <p id="loader-status">Processing audio with EchoAI neural models...</p>
-            </div>
-
-            <!-- SUCCESS DOWNLOAD CARD -->
-            <div id="download-card" class="download-card-container" style="display: none;">
-              <div class="success-icon">🎉</div>
-              <h3>Video Audio Cleaned Successfully!</h3>
-              <p>Your clean video has been packaged and is ready for download.</p>
-              
-              <div class="download-actions">
-                <a id="download-link" class="download-link-btn">
-                  <span>⬇</span> Download Clean Video
-                </a>
-                <button class="reset-btn" onclick="resetForm()" id="btn-reset">
-                  <span>🔄</span> Enhance Another Video
-                </button>
-              </div>
-            </div>
-
-            <!-- CONTROL BUTTONS -->
-            <div class="buttons">
-              <button class="primary-btn" onclick="processVideo()" id="btn-remove-noise">
-                ✨ Remove Noise
-              </button>
-              <button class="secondary-btn" id="btn-upload-file">
-                Upload Local File
-              </button>
-            </div>
-
-          </div>
-
-          <!-- STATUS MESSAGE -->
-          <p id="status" class="status-msg" role="status" aria-live="polite"></p>
-
-          <!-- FEATURE PILLS -->
-          <div class="feature-pills" id="features-grid">
-            <div class="pill">
-              <h4>AI Noise Removal</h4>
-              <p>Powered by Deep Learning</p>
-            </div>
-            <div class="pill">
-              <h4>High Quality</h4>
-              <p>Crystal Clear Audio</p>
-            </div>
-            <div class="pill">
-              <h4>Fast Processing</h4>
-              <p>In Seconds</p>
-            </div>
-            <div class="pill">
-              <h4>Secure</h4>
-              <p>Your files are safe</p>
-            </div>
-          </div>
-
+        <!-- INPUT + BUTTONS -->
+        <div class="input-row">
+          <input type="text" id="yt-url" placeholder="Paste YouTube URL here" class="url-input">
         </div>
 
-        <!-- HERO RIGHT -->
-        <div class="hero-image">
-          <div class="headphone-circle">
-            <div class="headphone">🎧</div>
+        <div class="buttons">
+          <button class="primary-btn" onclick="processVideo()">
+            ✨ Remove Noise
+          </button>
+        <input type="file" id="file-input" accept=".mp3,.mp4,.wav,.m4a,.flac,.ogg,.mov" style="display:none" onchange="processFile()">
+
+<button class="secondary-btn"
+        onclick="document.getElementById('file-input').click()">
+  Upload File
+</button>
+        </div>
+
+        <!-- STATUS MESSAGE -->
+        <p id="status" class="status-msg"></p>
+
+        <!-- DOWNLOAD BUTTON -->
+        <a id="download-link" hidden class="download-link-btn">
+          <span>⬇</span> Download Clean Video
+        </a>
+
+        <!-- FEATURE PILLS -->
+        <div class="feature-pills">
+          <div class="pill">
+            <h4>AI Noise Removal</h4>
+            <p>Powered by Deep Learning</p>
+          </div>
+          <div class="pill">
+            <h4>High Quality</h4>
+            <p>Crystal Clear Audio</p>
+          </div>
+          <div class="pill">
+            <h4>Fast Processing</h4>
+            <p>In Seconds</p>
+          </div>
+          <div class="pill">
+            <h4>Secure</h4>
+            <p>Your files are safe</p>
           </div>
         </div>
 
-      </section>
-    </main>
+      </div>
+
+      <!-- HERO RIGHT -->
+      <div class="hero-image">
+        <div class="headphone-circle">
+          <div class="headphone">🎧</div>
+        </div>
+      </div>
+
+    </section>
 
   </div>
 
   <script src="script.js"></script>
 
 </body>
+</html>
 </html>
