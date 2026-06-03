@@ -6,12 +6,9 @@
   <title>EchoAI</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
   <div class="glow1"></div>
   <div class="glow2"></div>
-
   <div class="container">
 
     <!-- NAVBAR -->
@@ -27,7 +24,6 @@
 
     <!-- HERO -->
     <section class="hero">
-
       <div class="hero-text">
 
         <h1>
@@ -36,34 +32,86 @@
           Using AI.
         </h1>
 
-        <p>
-          Remove background noise, improve voice clarity and get crystal clear audio using AI technology.
+        <p id="hero-description">
+          Remove background noise, improve voice clarity and get
+          crystal clear audio using AI technology.
         </p>
 
-        <!-- INPUT + BUTTONS -->
-        <div class="input-row">
-          <input type="text" id="yt-url" placeholder="Paste YouTube URL here" class="url-input">
+        <!-- APP CARD -->
+        <div class="app-card">
+
+          <!-- INPUT ROW -->
+          <div class="input-row">
+            <input type="text" id="yt-url"
+                   placeholder="Paste YouTube URL here"
+                   class="url-input">
+          </div>
+
+          <!-- BUTTONS -->
+          <div class="buttons">
+            <button class="primary-btn" onclick="processVideo()">
+              ✨ Remove Noise
+            </button>
+            <input type="file" id="file-input"
+                   accept=".mp3,.mp4,.wav,.m4a,.flac,.ogg,.mov"
+                   style="display:none"
+                   onchange="processFile()">
+            <button class="secondary-btn"
+                    onclick="document.getElementById('file-input').click()">
+              Upload File
+            </button>
+          </div>
+
+          <!-- YOUTUBE PREVIEW -->
+          <div id="preview-container" style="display:none">
+            <div class="preview-card">
+              <div class="thumbnail-wrapper">
+                <img id="video-thumbnail" src="" alt="Thumbnail"/>
+                <div class="play-overlay">
+                  <span class="badge">🎬 YouTube Video</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- LOADER -->
+          <div id="loader-container" style="display:none">
+            <div class="loader-card">
+              <div class="equalizer">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+              </div>
+              <p id="loader-status">Processing...</p>
+            </div>
+          </div>
+
+          <!-- DOWNLOAD CARD -->
+          <div id="download-card" style="display:none">
+            <div class="download-card-container">
+              <div class="success-icon">🎉</div>
+              <h3>Enhancement Complete!</h3>
+              <p>Your audio has been cleaned and normalized.</p>
+              <div class="download-actions">
+                <a id="download-link" class="download-link-btn">
+                  ⬇ Download Clean Video
+                </a>
+                <button onclick="resetForm()" class="reset-btn">
+                  🔄 Process Another Video
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- STATUS MESSAGE -->
+          <p id="status" class="status-msg"></p>
+
         </div>
-
-        <div class="buttons">
-          <button class="primary-btn" onclick="processVideo()">
-            ✨ Remove Noise
-          </button>
-        <input type="file" id="file-input" accept=".mp3,.mp4,.wav,.m4a,.flac,.ogg,.mov" style="display:none" onchange="processFile()">
-
-<button class="secondary-btn"
-        onclick="document.getElementById('file-input').click()">
-  Upload File
-</button>
-        </div>
-
-        <!-- STATUS MESSAGE -->
-        <p id="status" class="status-msg"></p>
-
-        <!-- DOWNLOAD BUTTON -->
-        <a id="download-link" hidden class="download-link-btn">
-          <span>⬇</span> Download Clean Video
-        </a>
 
         <!-- FEATURE PILLS -->
         <div class="feature-pills">
@@ -95,11 +143,8 @@
       </div>
 
     </section>
-
   </div>
 
   <script src="script.js"></script>
-
 </body>
-</html>
 </html>
